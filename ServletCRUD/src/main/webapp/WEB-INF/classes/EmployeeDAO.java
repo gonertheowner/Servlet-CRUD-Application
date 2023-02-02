@@ -130,4 +130,32 @@ public class EmployeeDAO {
 
         return employeeList;
     }
+
+    public static List<Employee> getRecords(int limit, int offset) {
+        List<Employee> employeeList = new ArrayList<>();
+
+        try {
+            Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM employee LIMIT ? OFFSET ?");
+            preparedStatement.setInt(1, limit);
+            preparedStatement.setInt(2, offset);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Employee employee = new Employee();
+                employee.setId(resultSet.getInt(1));
+                employee.setName(resultSet.getString(2));
+                employee.setPassword(resultSet.getString(3));
+                employee.setEmail(resultSet.getString(4));
+                employee.setCountry(resultSet.getString(5));
+                employeeList.add(employee);
+            }
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return employeeList;
+    }
 }
