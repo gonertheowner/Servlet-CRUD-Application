@@ -1,3 +1,5 @@
+package beans;
+
 public class Employee {
     private int id;
     private String name, password, email, country;
