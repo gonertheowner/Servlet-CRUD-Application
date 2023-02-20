@@ -1,3 +1,3 @@
 # Servlet-CRUD-Application
 
-Использованные технологии: JDBC, Servlet, Maven, HTML, postgreSQL
+Использованные технологии: JDBC, Servlet, HTML, postgreSQL
